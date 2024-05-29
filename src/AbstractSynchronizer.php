@@ -7,121 +7,122 @@
  * any purpose with or without fee is hereby granted, provided that the
  * above copyright notice and this permission notice appear in all copies.
  *
- * @package  FlameCore\Synchronizer
- * @version  0.1
- * @link     http://www.flamecore.org
+ * PHP version 8
+ *
+ * @category Synchronizer
+ * @package  Whatis\Synchronizer
+ * @author   Christian Neff <christian.neff@gmail.com>
  * @license  http://opensource.org/licenses/MIT The MIT License
+ * @version  1.0.0
+ * @link     https://github.com/TheWhatis/synchronizer
  */
 
-namespace FlameCore\Synchronizer;
+namespace Whatis\Synchronizer;
 
-use FlameCore\EventObserver\ObserverInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * The AbstractSynchronizer class
+ * Абстрактный класс синхронизатора
  *
+ * @category Synchronizer
+ * @package  Whatis\Synchronizer
  * @author   Christian Neff <christian.neff@gmail.com>
+ * @license  http://opensource.org/licenses/MIT The MIT License
+ * @link     https://github.com/TheWhatis/synchronizer
  */
 abstract class AbstractSynchronizer implements SynchronizerInterface
 {
     /**
-     * @var \FlameCore\Synchronizer\SynchronizerSourceInterface
+     * Источник
+     *
+     * @var SynchronizerSourceInterface
      */
-    protected $source;
+    protected SynchronizerSourceInterface $source;
 
     /**
-     * @var \FlameCore\Synchronizer\SynchronizerTargetInterface
+     * Цель
+     *
+     * @var SynchronizerTargetInterface
      */
-    protected $target;
+    protected SynchronizerTargetInterface $target;
 
     /**
-     * @var \FlameCore\EventObserver\ObserverInterface
+     * Диспетчер событий
+     *
+     * @var EventDispatcherInterface
      */
-    protected $observer;
+    protected EventDispatcherInterface $dispatcher;
 
     /**
-     * @var array
+     * Создать экземпляр синхронизации
+     *
+     * @param SynchronizerSourceInterface $source Источник
+     * @param SynchronizerTargetInterface $target Цель
      */
-    protected $excludes = array();
-
-    /**
-     * @param \FlameCore\Synchronizer\SynchronizerSourceInterface $source
-     * @param \FlameCore\Synchronizer\SynchronizerTargetInterface $target
-     */
-    public function __construct(SynchronizerSourceInterface $source, SynchronizerTargetInterface $target)
-    {
+    public function __construct(
+        SynchronizerSourceInterface $source,
+        SynchronizerTargetInterface $target
+    ) {
         $this->setSource($source);
         $this->setTarget($target);
     }
 
     /**
-     * @param \FlameCore\Synchronizer\SynchronizerSourceInterface $source
-     * @return \FlameCore\Synchronizer\SynchronizerInterface
+     * Установить источник
+     *
+     * @param SynchronizerSourceInterface $source Источник
+     *
+     * @return static
      */
-    public function setSource(SynchronizerSourceInterface $source)
+    public function setSource(SynchronizerSourceInterface $source): static
     {
         if (!$this->supportsSource($source)) {
             throw new \InvalidArgumentException(sprintf('%s does not support %s.', get_class($this), get_class($source)));
         }
 
         $this->source = $source;
-
         return $this;
     }
 
     /**
-     * @param \FlameCore\Synchronizer\SynchronizerTargetInterface $target
-     * @return \FlameCore\Synchronizer\SynchronizerInterface
+     * Установить цель
+     *
+     * @param SynchronizerTargetInterface $target Цель
+     *
+     * @return static
      */
-    public function setTarget(SynchronizerTargetInterface $target)
+    public function setTarget(SynchronizerTargetInterface $target): static
     {
         if (!$this->supportsTarget($target)) {
             throw new \InvalidArgumentException(sprintf('%s does not support %s.', get_class($this), get_class($target)));
         }
 
         $this->target = $target;
-
         return $this;
     }
 
     /**
-     * {@inheritdoc}
+     * Установить наблюдателя
+     *
+     * @param EventDispatcherInterface $dispatcher Наблюдатель
+     *
+     * @return static
      */
-    public function getExcludes()
+    public function observe(EventDispatcherInterface $dispatcher): static
     {
-        return $this->excludes;
-    }
-
-    /**
-     * @param array $excludes
-     * @return \FlameCore\Synchronizer\SynchronizerInterface
-     */
-    public function setExcludes(array $excludes)
-    {
-        $this->excludes = $excludes;
-
+        $this->dispatcher = $dispatcher;
         return $this;
     }
 
     /**
-     * @param string $exclude
-     * @return \FlameCore\Synchronizer\SynchronizerInterface
+     * Вызвать уведомление
+     *
+     * @return void
      */
-    public function exclude($exclude)
+    public function event(): void
     {
-        $this->excludes[] = $exclude;
-
-        return $this;
-    }
-
-    /**
-     * @param \FlameCore\EventObserver\ObserverInterface $observer
-     * @return \FlameCore\Synchronizer\SynchronizerInterface
-     */
-    public function observe(ObserverInterface $observer)
-    {
-        $this->observer = $observer;
-
-        return $this;
+        if (isset($this->dispatcher)) {
+            $this->dispatcher->dispatch(...func_get_args());
+        }
     }
 }

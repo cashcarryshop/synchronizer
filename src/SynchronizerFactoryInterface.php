@@ -7,53 +7,57 @@
  * any purpose with or without fee is hereby granted, provided that the
  * above copyright notice and this permission notice appear in all copies.
  *
- * @package  FlameCore\Synchronizer
- * @version  0.1
- * @link     http://www.flamecore.org
+ * PHP version 8
+ *
+ * @category Synchronizer
+ * @package  Whatis\Synchronizer
+ * @author   Christian Neff <christian.neff@gmail.com>
  * @license  http://opensource.org/licenses/MIT The MIT License
+ * @version  1.0.0
+ * @link     https://github.com/TheWhatis/synchronizer
  */
 
-namespace FlameCore\Synchronizer;
+namespace Whatis\Synchronizer;
 
 /**
- * The SynchronizerFactory interface
+ * Интерфейс фабрики синхронизаций
  *
+ * @category Synchronizer
+ * @package  Sizya
  * @author   Christian Neff <christian.neff@gmail.com>
+ * @license  Unlicense <https://unlicense.org>
+ * @link     https://github.com/TheWhatis/synchronizer
  */
 interface SynchronizerFactoryInterface
 {
     /**
-     * @param array $sourceSettings
-     * @param array $targetSettings
-     * @return \FlameCore\Synchronizer\SynchronizerInterface
+     * Создать синхронизацию
+     *
+     * @param array $sourceSettings Настройки для источника
+     * @param array $targetSettings Настройки для цели
+     *
+     * @return SynchronizerInterface
      */
-    public function create(array $sourceSettings, array $targetSettings);
+    public function create(
+        array $sourceSettings,
+        array $targetSettings
+    ): SynchronizerInterface;
 
     /**
-     * @param array $settings
-     * @return \FlameCore\Synchronizer\SynchronizerSourceInterface
+     * Создать источник синхронизации
+     *
+     * @param array $settings Настройки
+     *
+     * @return SynchronizerSourceInterface
      */
-    public function createSource(array $settings);
+    public function createSource(array $settings): SynchronizerSourceInterface;
 
     /**
-     * @param array $settings
-     * @return \FlameCore\Synchronizer\SynchronizerTargetInterface
+     * Создать цель синхронизации
+     *
+     * @param array $settings Настройки
+     *
+     * @return SynchronizerTargetInterface
      */
-    public function createTarget(array $settings);
-
-    /**
-     * @param string $type
-     * @param string $class
-     * @throws \DomainException
-     * @throws \LogicException
-     */
-    public function registerSource($type, $class);
-
-    /**
-     * @param string $type
-     * @param string $class
-     * @throws \DomainException
-     * @throws \LogicException
-     */
-    public function registerTarget($type, $class);
+    public function createTarget(array $settings): SynchronizerTargetInterface;
 }

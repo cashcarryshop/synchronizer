@@ -7,68 +7,82 @@
  * any purpose with or without fee is hereby granted, provided that the
  * above copyright notice and this permission notice appear in all copies.
  *
- * @package  FlameCore\Synchronizer
- * @version  0.1
- * @link     http://www.flamecore.org
+ * PHP version 8
+ *
+ * @category Synchronizer
+ * @package  Whatis\Synchronizer
+ * @author   Christian Neff <christian.neff@gmail.com>
  * @license  http://opensource.org/licenses/MIT The MIT License
+ * @version  1.0.0
+ * @link     https://github.com/TheWhatis/synchronizer
  */
 
-namespace FlameCore\Synchronizer;
+namespace Whatis\Synchronizer;
 
-use FlameCore\EventObserver\ObserverInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * The Synchronizer interface
+ * Интерфейс синхронизатора
  *
+ * @category Synchronizer
+ * @package  Sizya
  * @author   Christian Neff <christian.neff@gmail.com>
+ * @license  Unlicense <https://unlicense.org>
+ * @link     https://github.com/TheWhatis/synchronizer
  */
 interface SynchronizerInterface
 {
     /**
-     * @param bool $preserve
+     * Синхронизировать
+     *
+     * @param array $settings Настройки для синхронизации
+     *
      * @return bool
      */
-    public function synchronize($preserve = true);
+    public function synchronize(array $settings = []): bool;
 
     /**
-     * @param \FlameCore\Synchronizer\SynchronizerSourceInterface $source
+     * Установить источник
+     *
+     * @param SynchronizerSourceInterface $source Источник
+     *
+     * @return static
      */
-    public function setSource(SynchronizerSourceInterface $source);
+    public function setSource(SynchronizerSourceInterface $source): static;
 
     /**
-     * @param \FlameCore\Synchronizer\SynchronizerTargetInterface $target
+     * Установить цель
+     *
+     * @param SynchronizerTargetInterface $target Цель
+     *
+     * @return static
      */
-    public function setTarget(SynchronizerTargetInterface $target);
+    public function setTarget(SynchronizerTargetInterface $target): static;
 
     /**
-     * @param \FlameCore\Synchronizer\SynchronizerSourceInterface $source
+     * Проверить, поддерживается ли источник
+     *
+     * @param SynchronizerSourceInterface $source Источник
+     *
      * @return bool
      */
-    public function supportsSource(SynchronizerSourceInterface $source);
+    public function supportsSource(SynchronizerSourceInterface $source): bool;
 
     /**
-     * @param \FlameCore\Synchronizer\SynchronizerTargetInterface $target
+     * Проверить, поддерживается ли цель
+     *
+     * @param SynchronizerTargetInterface $target Цель
+     *
      * @return bool
      */
-    public function supportsTarget(SynchronizerTargetInterface $target);
+    public function supportsTarget(SynchronizerTargetInterface $target): bool;
 
     /**
-     * @return array
+     * Установить наблюдатель
+     *
+     * @param EventDispatcherInterface $dispatcher Наблюдатель
+     *
+     * @return static
      */
-    public function getExcludes();
-
-    /**
-     * @param array $excludes
-     */
-    public function setExcludes(array $excludes);
-
-    /**
-     * @param string $exclude
-     */
-    public function exclude($exclude);
-
-    /**
-     * @param \FlameCore\EventObserver\ObserverInterface $observer
-     */
-    public function observe(ObserverInterface $observer);
+    public function observe(EventDispatcherInterface $dispatcher): static;
 }

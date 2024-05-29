@@ -1,117 +1,140 @@
-FlameCore Synchronizer
-======================
+Synchronizer
+================
 
 [![Latest Stable](http://img.shields.io/packagist/v/flamecore/synchronizer.svg)](https://packagist.org/packages/flamecore/synchronizer)
 [![Scrutinizer](http://img.shields.io/scrutinizer/g/flamecore/synchronizer.svg)](https://scrutinizer-ci.com/g/flamecore/synchronizer)
 [![License](http://img.shields.io/packagist/l/flamecore/synchronizer.svg)](https://packagist.org/packages/flamecore/synchronizer)
 
-This library makes it easy to synchronize all kinds of things. It features a beautiful and easy to use API.
+Эта библиотека позволяет легко синхронизировать самые разные вещи. Он имеет красивы     й и простой в использовании API.
 
-Synchronizer was developed as backend for our deployment and testing tool [Seabreeze](https://github.com/FlameCore/Seabreeze).
+Synchronizer был разработан в качестве серверной части для нашего инструмента разве     ртывания и тестирования [Seabreeze](https://github.com/FlameCore/Seabreeze).
 
 
-Implementations
----------------
+Реализация
+------------
 
-The Synchronizer library is just an abstract foundation. But concrete implementations are available:
+Библиотека Synchronizer - это всего лишь абстрактная основа. Но доступные конкретные реализации: (только для версии 0.1.0)
 
 * [FilesSynchronizer](https://github.com/FlameCore/FilesSynchronizer)
 * [DatabaseSynchronizer](https://github.com/FlameCore/DatabaseSynchronizer)
 
 
-Usage
------
+Использование
+----------------
 
-Include the vendor autoloader and use the classes:
+Подключите к своему коду `autoload.php` и используйте классы:
 
 ```php
 namespace Acme\MyApplication;
 
 // To create a Synchronizer:
-use FlameCore\Synchronizer\AbstractSynchronizer;
-use FlameCore\Synchronizer\SynchronizerSourceInterface;
-use FlameCore\Synchronizer\SynchronizerTargetInterface;
+use Whatis\Synchronizer\AbstractSynchronizer;
+use Whatis\Synchronizer\SynchronizerSourceInterface;
+use Whatis\Synchronizer\SynchronizerTargetInterface;
 
 // To make your project compatible with Synchronizer:
-use FlameCore\Synchronizer\SynchronizerInterface;
+use Whatis\Synchronizer\SynchronizerInterface;
 
 require 'vendor/autoload.php';
 ```
 
-Create your Synchronizer:
+Создайте свой синхронизатор:
 
 ```php
 class ExampleSynchronizer extends AbstractSynchronizer
 {
     /**
-     * @param bool $preserve Preserve obsolete objects
-     * @return bool Returns whether the synchronization succeeded.
+     * Синхронизировать
+     *
+     * @param array $settings Настройки для синхронизации
+     *
+     * @return bool
      */
-    public function synchronize($preserve = true)
+    public function synchronize(array $settings = []): bool
     {
-        // Do the sync magic
+        /// ... ЛОГИКА ...
 
         return true;
     }
 
     /**
-     * @param SynchronizerSourceInterface $source The source
-     * @return bool Returns whether the synchronizer supports the source.
+     * Проверить, поддерживается ли источник
+     *
+     * @param SynchronizerSourceInterface $source Источник
+     *
+     * @return bool
      */
-    public function supportsSource(SynchronizerSourceInterface $source)
+    public function supportsSource(SynchronizerSourceInterface $source): bool
     {
         return $source instanceof ExampleSource;
     }
 
     /**
-     * @param SynchronizerTargetInterface $target The target
-     * @return bool Returns whether the synchronizer supports the target.
+     * Проверить, поддерживается ли цель
+     *
+     * @param SynchronizerTargetInterface $target Цель
+     *
+     * @return bool
      */
-    public function supportsTarget(SynchronizerTargetInterface $target)
+    public function supportsTarget(SynchronizerTargetInterface $target): bool
     {
         return $target instanceof ExampleTarget;
     }
 }
 ```
 
-Create your Source and Target:
+Создайте источники и цели синхронизатора:
 
 ```php
 class ExampleSource implements SynchronizerSourceInterface
 {
     /**
-     * @param array $settings The settings
+     * Создать экземпляр источника
+     *
+     * @param array $settings Настройки
      */
     public function __construct(array $settings)
     {
-        // Save settings
+        // ... Сохраняем настройки ...
     }
 
-    // Your methods...
+    // .. Методы источника ...
 }
 
 class ExampleTarget implements SynchronizerTargetInterface
 {
     /**
-     * @param array $settings The settings
+     * Создать экземпляр цели
+     *
+     * @param array $settings Настройки
      */
     public function __construct(array $settings)
     {
-        // Save settings
+        // ... Сохраняем настройки ...
     }
 
-    // Your methods...
+    // .. Методы цели ...
 }
 ```
 
-Make your project compatible with Synchronizer:
+Создайте свой проект, совместимый с синхронизатором:
 
 ```php
 class Application
 {
-    protected $synchronizer;
+    /**
+     * Синхронизатор
+     *
+     * @var SynchronizerInterface
+     */
+    protected SynchronizerInterface $synchronizer;
 
-    public function setSynchronizer(SynchronizerInterface $synchronizer)
+    /**
+     * Установить синхронизатор
+     *
+     * @param SynchronizerInterface $synchronizer Синхронизатор
+     */
+    public function setSynchronizer(SynchronizerInterface $synchronizer): static
     {
         $this->synchronizer = $synchronizer;
     }
@@ -121,27 +144,27 @@ class Application
 ```
 
 
-Installation
-------------
+Установка
+-----------
 
-### Install via Composer
+### Через Composer
 
-[Install Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) if you don't already have it present on your system:
+[Install Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) если composer не установлен:
 
     $ curl -sS https://getcomposer.org/installer | php
 
-To install the library, run the following command and you will get the latest version:
+Установите библиотеку, эта команда установит самую последнюю версию пакета
 
-    $ php composer.phar require flamecore/synchronizer
+    $ composer require whatis/synchronizer
 
 
-Requirements
+Требования
 ------------
 
-* You must have at least PHP version 5.4 installed on your system.
+* Ваша версия php должна быть не меньше 8.0
 
 
-Contributing
-------------
+Участие
+---------
 
-If you'd like to contribute, please see the [CONTRIBUTING](CONTRIBUTING.md) file first.
+Если хотите поучавствовать в разработке, пожалуйста, сначала прочитайте [CONTRIBUTING](CONTRIBUTING.md).

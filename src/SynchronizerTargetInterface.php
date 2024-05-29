@@ -7,23 +7,33 @@
  * any purpose with or without fee is hereby granted, provided that the
  * above copyright notice and this permission notice appear in all copies.
  *
- * @package  FlameCore\Synchronizer
- * @version  0.1
- * @link     http://www.flamecore.org
+ * PHP version 8
+ *
+ * @category Synchronizer
+ * @package  Whatis\Synchronizer
+ * @author   Christian Neff <christian.neff@gmail.com>
  * @license  http://opensource.org/licenses/MIT The MIT License
+ * @version  0.1
+ * @link     https://github.com/TheWhatis/synchronizer
  */
 
-namespace FlameCore\Synchronizer;
+namespace Whatis\Synchronizer;
 
 /**
- * The SynchronizerTarget interface
+ * Интерфейс цели синхронизации
  *
+ * @category Synchronizer
+ * @package  Whatis\Synchronizer
  * @author   Christian Neff <christian.neff@gmail.com>
+ * @license  http://opensource.org/licenses/MIT The MIT License
+ * @link     https://github.com/TheWhatis/synchronizer
  */
 interface SynchronizerTargetInterface
 {
     /**
-     * @param array $settings
+     * Создать экземпляр цели
+     *
+     * @param array $settings Настройки
      */
     public function __construct(array $settings);
 }

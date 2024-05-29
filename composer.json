@@ -1,8 +1,9 @@
 {
     "name": "whatis/synchronizer",
     "description": "Synchronize all kinds of things",
-    "homepage": "http://www.flamecore.org",
+    "homepage": "http://github.com/TheWhatis/synchronizer",
     "keywords": ["synchronization", "sync"],
+    "version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
@@ -23,7 +24,7 @@
     },
     "require": {
         "php": "^8.0",
-        "symfony/event-dispatcher": "3.5.0",
+        "symfony/event-dispatcher": "3.5.0"
     },
     "autoload": {
         "psr-4": {
