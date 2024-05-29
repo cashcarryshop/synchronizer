@@ -102,7 +102,7 @@ abstract class AbstractSynchronizer implements SynchronizerInterface
     }
 
     /**
-     * Установить наблюдателя
+     * Установить наблюдателя (диспетчер событий)
      *
      * @param EventDispatcherInterface $dispatcher Наблюдатель
      *
@@ -115,7 +115,7 @@ abstract class AbstractSynchronizer implements SynchronizerInterface
     }
 
     /**
-     * Вызвать уведомление
+     * Вызвать событие
      *
      * @return void
      */

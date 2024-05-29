@@ -25,7 +25,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  * Интерфейс синхронизатора
  *
  * @category Synchronizer
- * @package  Sizya
+ * @package  Whatis\Synchronizer
  * @author   Christian Neff <christian.neff@gmail.com>
  * @license  Unlicense <https://unlicense.org>
  * @link     https://github.com/TheWhatis/synchronizer
@@ -78,7 +78,7 @@ interface SynchronizerInterface
     public function supportsTarget(SynchronizerTargetInterface $target): bool;
 
     /**
-     * Установить наблюдатель
+     * Установить наблюдателя (диспетчер событий)
      *
      * @param EventDispatcherInterface $dispatcher Наблюдатель
      *

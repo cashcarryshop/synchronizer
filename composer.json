@@ -3,7 +3,7 @@
     "description": "Synchronize all kinds of things",
     "homepage": "http://github.com/TheWhatis/synchronizer",
     "keywords": ["synchronization", "sync"],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {

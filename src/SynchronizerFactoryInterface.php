@@ -23,7 +23,7 @@ namespace Whatis\Synchronizer;
  * Интерфейс фабрики синхронизаций
  *
  * @category Synchronizer
- * @package  Sizya
+ * @package  Whatis\Synchronizer
  * @author   Christian Neff <christian.neff@gmail.com>
  * @license  Unlicense <https://unlicense.org>
  * @link     https://github.com/TheWhatis/synchronizer
