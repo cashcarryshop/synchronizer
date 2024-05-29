@@ -5,10 +5,7 @@ Synchronizer
 [![Scrutinizer](http://img.shields.io/scrutinizer/g/flamecore/synchronizer.svg)](https://scrutinizer-ci.com/g/flamecore/synchronizer)
 [![License](http://img.shields.io/packagist/l/flamecore/synchronizer.svg)](https://packagist.org/packages/flamecore/synchronizer)
 
-Эта библиотека позволяет легко синхронизировать самые разные вещи. Он имеет красивы     й и простой в использовании API.
-
-Synchronizer был разработан в качестве серверной части для нашего инструмента разве     ртывания и тестирования [Seabreeze](https://github.com/FlameCore/Seabreeze).
-
+Эта библиотека позволяет легко синхронизировать самые разные вещи. Он имеет красивый и простой в использовании API.
 
 Реализация
 ------------
