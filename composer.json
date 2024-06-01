@@ -2,7 +2,7 @@
     "name": "cashcarryshop/synchronizer",
     "description": "Synchronize all kinds of things",
     "homepage": "http://github.com/cashcarryshop/synchronizer",
-    "keywords": ["synchronization", "sync"],
+    "keywords": ["synchronization", "sync", "cashcarryshop"],
     "version": "1.0.0",
     "license": "MIT",
     "authors": [
