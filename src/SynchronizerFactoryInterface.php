@@ -10,23 +10,23 @@
  * PHP version 8
  *
  * @category Synchronizer
- * @package  Whatis\Synchronizer
+ * @package  CashCarryShop\Synchronizer
  * @author   Christian Neff <christian.neff@gmail.com>
  * @license  http://opensource.org/licenses/MIT The MIT License
  * @version  1.0.0
- * @link     https://github.com/TheWhatis/synchronizer
+ * @link     https://github.com/cashcarryshop/synchronizer
  */
 
-namespace Whatis\Synchronizer;
+namespace CashCarryShop\Synchronizer;
 
 /**
  * Интерфейс фабрики синхронизаций
  *
  * @category Synchronizer
- * @package  Whatis\Synchronizer
+ * @package  CashCarryShop\Synchronizer
  * @author   Christian Neff <christian.neff@gmail.com>
  * @license  Unlicense <https://unlicense.org>
- * @link     https://github.com/TheWhatis/synchronizer
+ * @link     https://github.com/cashcarryshop/synchronizer
  */
 interface SynchronizerFactoryInterface
 {

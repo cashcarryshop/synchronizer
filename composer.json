@@ -1,9 +1,9 @@
 {
-    "name": "whatis/synchronizer",
+    "name": "cashcarryshop/synchronizer",
     "description": "Synchronize all kinds of things",
-    "homepage": "http://github.com/TheWhatis/synchronizer",
+    "homepage": "http://github.com/cashcarryshop/synchronizer",
     "keywords": ["synchronization", "sync"],
-    "version": "1.0.2",
+    "version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
@@ -15,12 +15,13 @@
         {
             "name": "Whatis",
             "email": "anton-gogo@mail.ru",
+            "homepage": "https://whatis.portfolus.ru",
             "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/TheWhatis/synchronizer/issues",
-        "wiki": "https://github.com/TheWhatis/synchronizer/wiki"
+        "issues": "https://github.com/cashcarryshop/synchronizer/issues",
+        "wiki": "https://github.com/cashcarryshop/synchronizer/wiki"
     },
     "require": {
         "php": "^8.0",
@@ -28,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Whatis\\Synchronizer\\": "src/"
+            "CashCarryShop\\Synchronizer\\": "src/"
         }
     }
 }
