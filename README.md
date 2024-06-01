@@ -25,12 +25,12 @@ Synchronizer
 namespace Acme\MyApplication;
 
 // To create a Synchronizer:
-use Whatis\Synchronizer\AbstractSynchronizer;
-use Whatis\Synchronizer\SynchronizerSourceInterface;
-use Whatis\Synchronizer\SynchronizerTargetInterface;
+use CashCarryShop\Synchronizer\AbstractSynchronizer;
+use CashCarryShop\Synchronizer\SynchronizerSourceInterface;
+use CashCarryShop\Synchronizer\SynchronizerTargetInterface;
 
 // To make your project compatible with Synchronizer:
-use Whatis\Synchronizer\SynchronizerInterface;
+use CashCarryShop\Synchronizer\SynchronizerInterface;
 
 require 'vendor/autoload.php';
 ```

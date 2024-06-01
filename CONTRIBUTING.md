@@ -28,7 +28,7 @@
 Мы следуем [PSR-2 оформлению кода][4].
 
 
-  [1]: https://github.com/TheWhatis/Synchronizer
+  [1]: https://github.com/cashcarryshop/synchronizer
   [2]: http://semver.org/
   [3]: http://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages
   [4]: http://www.php-fig.org/psr/psr-2/
